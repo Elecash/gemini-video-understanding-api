@@ -1,0 +1,45 @@
+<div style="max-width: 800px; margin: 36px auto; padding: 0 16px;">
+  <mat-card>
+    <mat-card-title>Test Video Understanding Gemini API with Youtube</mat-card-title>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" style="display: grid; gap: 16px;">
+      <!-- Youtube URL -->
+      <mat-form-field appearance="fill">
+        <mat-label>Youtube URL</mat-label>
+        <input matInput placeholder="https://www.youtube.com/watch?v=..." formControlName="youtubeUrl" required />
+      </mat-form-field>
+
+      <!-- Instructions -->
+      <mat-form-field appearance="fill">
+        <mat-label>Instructions</mat-label>
+        <input matInput placeholder="Resume, extrae timestamps, etc." formControlName="instructions" required />
+      </mat-form-field>
+
+      <!-- Send button + spinner -->
+      <div style="display:flex; gap:12px; align-items:center;">
+        <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid || loading()">
+          Send
+        </button>
+
+        @if (loading()) {
+          <mat-progress-spinner
+            mode="indeterminate"
+            diameter="24">
+          </mat-progress-spinner>
+        }
+      </div>
+
+      <!-- Gemini response -->
+      <mat-form-field appearance="fill" style="margin-top: 8px;">
+        <mat-label>Gemini response</mat-label>
+        <textarea
+          matInput
+          formControlName="response"
+          rows="10"
+          readonly
+          placeholder="Aquí aparecerá la respuesta de Gemini">
+            </textarea>
+      </mat-form-field>
+    </form>
+  </mat-card>
+</div>
